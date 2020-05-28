@@ -16,4 +16,8 @@ public class User {
     System.out.println("\tdescription: " + description);
     System.out.println("}");
   }
+
+  public String fullName() {
+    return firstName + " " + lastName;
+  }
 }

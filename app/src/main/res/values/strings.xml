@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">AutoLogs</string>
+    <string name="email_cta">Email</string>
+    <string name="password_cta">Password</string>
+    <string name="login_cta">Login</string>
+    <string name="logout_cta">Logout</string>
+    <string name="signup_cta">Sign Up</string>
+
+    <!-- CONSTANTS -->
+    <string name="PREFERENCES_USER_DATA">io.mattalui.autologs.USER_SHARED_PREFERENCES</string>
+    <string name="CONSTANTS_USERTOKEN">io.mattalui.autologs.USERTOKEN</string>
 </resources>

@@ -1,6 +1,5 @@
 package io.mattalui.autologs.services;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,17 +15,30 @@ import io.mattalui.autologs.BuildConfig;
 
 public class QuickHTTP {
 
-  private static HttpURLConnection getBaseConnection(String url) throws MalformedURLException, IOException {
+  String usertoken;
+
+  public QuickHTTP(){
+    this.usertoken = null;
+  }
+
+  public QuickHTTP(String _token) {
+    this.usertoken = _token;
+  }
+
+  private HttpURLConnection getBaseConnection(String url) throws MalformedURLException, IOException {
     System.out.println(url);
     HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection();
     connection.setRequestProperty("Authorization", "Basic: " + BuildConfig.LOGS_APP_KEY);
-    connection.setRequestProperty("X-Identity", BuildConfig.USERTOKEN);
     connection.setRequestProperty("Content-Type", "application/json; utf-8");
+    if (usertoken != null){
+      connection.setRequestProperty("X-Identity", usertoken);
+    }
+//    connection.setRequestProperty("X-Identity", BuildConfig.USERTOKEN);
 
     return connection;
   }
 
-  private static String buildQueryString(HashMap<String, String> paramHash) {
+  private String buildQueryString(HashMap<String, String> paramHash) {
     String params = "?";
     Set<String> keys = paramHash.keySet();
     boolean firstKey = true;
@@ -43,7 +55,7 @@ public class QuickHTTP {
     return params;
   }
 
-  private static String readResponse(HttpURLConnection connection) throws IOException {
+  private String readResponse(HttpURLConnection connection) throws IOException {
     InputStream response = null;
     if(connection.getResponseCode() >= 400){
       response = connection.getErrorStream();
@@ -54,17 +66,17 @@ public class QuickHTTP {
     Scanner scanner = new Scanner(response);
 
     String resp = scanner.useDelimiter("\\A").next();
-    System.out.println(resp);
+    System.out.println("QUICKHTTP RESPONSE: " + resp);
     return resp;
   }
 
-  private static void writeData(HttpURLConnection connection, String data) throws IOException {
+  private void writeData(HttpURLConnection connection, String data) throws IOException {
     OutputStream output = connection.getOutputStream();
     byte[] body = data.getBytes("utf-8");
     output.write(body, 0, body.length);
   }
 
-  public static String get(String url){
+  public String get(String url){
     try {
       HttpURLConnection connection = getBaseConnection(url);
       return readResponse(connection);
@@ -74,14 +86,13 @@ public class QuickHTTP {
     }
   }
 
-  public static String get(String url, HashMap<String, String> params){
+  public String get(String url, HashMap<String, String> params){
     String requestUrl = url + buildQueryString(params);
-    System.out.println(requestUrl);
 
-    return requestUrl;
+    return get(requestUrl);
   }
 
-  public static String post(String url, String data){
+  public String post(String url, String data){
     try {
       HttpURLConnection connection = getBaseConnection(url);
       connection.setRequestMethod("POST");
@@ -95,7 +106,7 @@ public class QuickHTTP {
     }
   }
 
-  public static String put(String url, String data){
+  public String put(String url, String data){
     try {
       HttpURLConnection connection = getBaseConnection(url);
       connection.setRequestMethod("PUT");
@@ -109,7 +120,7 @@ public class QuickHTTP {
     }
   }
 
-  public static String delete(String url){
+  public String delete(String url){
     try {
       HttpURLConnection connection = getBaseConnection(url);
       connection.setRequestMethod("DELETE");
