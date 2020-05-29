@@ -27,6 +27,7 @@ public class ViewLogs extends UserProtectedActivity {
     }
 
     public void fetchLogs(){
+        if(usertoken == null) return;
         final ViewLogs that = this;
         Thread getLogs = new Thread(new Runnable(){
             @Override

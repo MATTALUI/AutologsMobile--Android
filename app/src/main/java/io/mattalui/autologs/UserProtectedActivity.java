@@ -25,6 +25,7 @@ public class UserProtectedActivity extends AppCompatActivity {
 
     public void logout(View v){
         prefEditor.remove(getString(R.string.CONSTANTS_USERTOKEN));
+        prefEditor.commit();
         goToLogin();
 
         Toast myToast = Toast.makeText(this, "Hurry back soon!", Toast.LENGTH_LONG);
@@ -33,7 +34,6 @@ public class UserProtectedActivity extends AppCompatActivity {
 
     private void validateUserToken(){
         usertoken = pref.getString(getString(R.string.CONSTANTS_USERTOKEN), null);
-
         if (usertoken == null){
             goToLogin();
         }
