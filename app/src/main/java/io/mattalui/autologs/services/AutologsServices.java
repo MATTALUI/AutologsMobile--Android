@@ -12,122 +12,132 @@ import java.util.List;
 
 public class AutologsServices {
 
+  String usertoken;
+
+  public AutologsServices(){
+    this.usertoken = null;
+  }
+
+  public AutologsServices(String _token) {
+    this.usertoken = _token;
+  }
+
   /////////////////////////////////
   //  URL BUILDERS
   /////////////////////////////////
-  private static String buildBaseUrl() {
+  private String buildBaseUrl() {
     return BuildConfig.MISCAPI_HOST + "/auto-logs/";
   }
 
-  private static String buildLogsUrl() {
+  private String buildLogsUrl() {
     return buildBaseUrl() + "logs/";
   }
 
-  private static String buildLogUrl(int logId) {
+  private String buildLogUrl(int logId) {
     return buildLogsUrl() + logId + "/";
   }
 
-  private static String buildVehiclesUrl() {
+  private String buildVehiclesUrl() {
     return buildBaseUrl() + "vehicles/";
   }
 
-  private static String buildVehicleUrl(int vehicleId) {
+  private String buildVehicleUrl(int vehicleId) {
     return buildVehiclesUrl() + vehicleId + "/";
   }
 
-  private static String buildMISCAPIUrl() {
+  private String buildMISCAPIUrl() {
     return BuildConfig.MISCAPI_HOST + "/global/";
   }
 
-  private static String buildUsersUrl() {
+  private String buildUsersUrl() {
     return buildMISCAPIUrl() + "users/";
   }
 
-  private static String buildUserUrl() {
+  private String buildUserUrl() {
     return buildMISCAPIUrl() + "user/";
   }
 
-  private static String buildSessionUrl() {
+  private String buildSessionUrl() {
     return buildUserUrl() + "session/";
   }
 
   /////////////////////////////////
   //  AUTOLOG SERVICES
   /////////////////////////////////
-  public static List<AutoLog> getLogs() {
-    String data = QuickHTTP.get(buildLogsUrl());
+  public List<AutoLog> getLogs() {
+    String data = new QuickHTTP(usertoken).get(buildLogsUrl());
     return new Gson().fromJson(data, new TypeToken<List<AutoLog>>(){}.getType());
   }
 
-  public static AutoLog getLog(int logId) {
-    String data = QuickHTTP.get(buildLogUrl(logId));
+  public AutoLog getLog(int logId) {
+    String data = new QuickHTTP(usertoken).get(buildLogUrl(logId));
     return new Gson().fromJson(data, AutoLog.class);
   }
 
-  public static AutoLog createLog(AutoLog log) {
+  public AutoLog createLog(AutoLog log) {
     String json = new Gson().toJson(log);
-    String data = QuickHTTP.post(buildLogsUrl(), json);
+    String data = new QuickHTTP(usertoken).post(buildLogsUrl(), json);
     return new Gson().fromJson(data, AutoLog.class);
   }
 
-  public static AutoLog updateLog(AutoLog log) {
+  public AutoLog updateLog(AutoLog log) {
     String json = new Gson().toJson(log);
-    String data = QuickHTTP.put(buildLogUrl(log.id), json);
+    String data = new QuickHTTP(usertoken).put(buildLogUrl(log.id), json);
     return new Gson().fromJson(data, AutoLog.class);
   }
 
-  public static AutoLog deleteLog(int logId) {
-    String data = QuickHTTP.delete(buildLogUrl(logId));
+  public AutoLog deleteLog(int logId) {
+    String data = new QuickHTTP(usertoken).delete(buildLogUrl(logId));
     return new Gson().fromJson(data, AutoLog.class);
   }
 
   /////////////////////////////////
   //  VEHICLES SERVICES
   /////////////////////////////////
-  public static List<Vehicle> getVehicles() {
-    String data = QuickHTTP.get(buildVehiclesUrl());
+  public List<Vehicle> getVehicles() {
+    String data = new QuickHTTP(usertoken).get(buildVehiclesUrl());
     return new Gson().fromJson(data, new TypeToken<List<Vehicle>>(){}.getType());
   }
 
-  public static Vehicle getVehicle(int vehicleId) {
-    String data = QuickHTTP.get(buildVehicleUrl(vehicleId));
+  public Vehicle getVehicle(int vehicleId) {
+    String data = new QuickHTTP(usertoken).get(buildVehicleUrl(vehicleId));
     return new Gson().fromJson(data, Vehicle.class);
   }
 
-  public static Vehicle createVehicle (Vehicle vehicle) {
+  public Vehicle createVehicle (Vehicle vehicle) {
     String json = new Gson().toJson(vehicle);
-    String data = QuickHTTP.post(buildVehiclesUrl(), json);
+    String data = new QuickHTTP(usertoken).post(buildVehiclesUrl(), json);
     return new Gson().fromJson(data, Vehicle.class);
   }
 
-  public static Vehicle updateVehicle(Vehicle vehicle) {
+  public Vehicle updateVehicle(Vehicle vehicle) {
     String json = new Gson().toJson(vehicle);
-    String data = QuickHTTP.put(buildLogUrl(vehicle.id), json);
+    String data = new QuickHTTP(usertoken).put(buildLogUrl(vehicle.id), json);
     return new Gson().fromJson(data, Vehicle.class);
   }
 
-  public static Vehicle deleteVehicle(int vehicleId) {
-    String data = QuickHTTP.delete(buildVehicleUrl(vehicleId));
+  public Vehicle deleteVehicle(int vehicleId) {
+    String data = new QuickHTTP(usertoken).delete(buildVehicleUrl(vehicleId));
     return new Gson().fromJson(data, Vehicle.class);
   }
 
   /////////////////////////////////
   //  USER SERVICES
   /////////////////////////////////
-  public static User whoAmI() {
-    String data = QuickHTTP.get(buildUserUrl());
+  public User whoAmI() {
+    String data = new QuickHTTP(usertoken).get(buildUserUrl());
     return new Gson().fromJson(data, User.class);
   }
 
-  public static LoginResponse login(LoginCredentials credentials) {
+  public LoginResponse login(LoginCredentials credentials) {
     String json = new Gson().toJson(credentials);
-    String data = QuickHTTP.post(buildSessionUrl(), json);
+    String data = new QuickHTTP(usertoken).post(buildSessionUrl(), json);
     return new Gson().fromJson(data, LoginResponse.class);
   }
 
-  public static LoginResponse signUp(UserCreator newUser) {
+  public LoginResponse signUp(UserCreator newUser) {
     String json = new Gson().toJson(newUser);
-    String data = QuickHTTP.post(buildUsersUrl(), json);
+    String data = new QuickHTTP(usertoken).post(buildUsersUrl(), json);
     return new Gson().fromJson(data, LoginResponse.class);
   }
 }

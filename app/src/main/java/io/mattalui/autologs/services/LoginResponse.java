@@ -4,9 +4,9 @@ package io.mattalui.autologs.services;
 import io.mattalui.autologs.models.User;
 
 public class LoginResponse {
-  User user;
-  String userToken;
-  String error;
+  public User user;
+  public String userToken;
+  public String error;
 
   public void display() {
     System.out.println("LoginResponse {");
