@@ -23,6 +23,10 @@
             android:name=".SignUp"
             android:parentActivityName=".Login">
         </activity>
+        <activity
+            android:name=".ViewVehicles"
+            android:parentActivityName=".ViewLogs">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
