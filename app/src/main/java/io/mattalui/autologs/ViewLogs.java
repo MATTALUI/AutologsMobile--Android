@@ -16,7 +16,7 @@ import io.mattalui.autologs.services.AutologsServices;
 
 public class ViewLogs extends UserProtectedActivity {
     ListView logsView;
-
+//this is a comment to pull
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
