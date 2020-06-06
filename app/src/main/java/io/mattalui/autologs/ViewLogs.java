@@ -47,6 +47,11 @@ public class ViewLogs extends UserProtectedActivity {
         getLogs.start();
     }
 
+    public void viewVehicles(View v) {
+        Intent intent = new Intent(this, ViewVehicles.class);
+        startActivity(intent);
+    }
+
     public void logout(View v){
         super.logout(v);
     }

@@ -1,11 +1,16 @@
 <resources>
+    <!-- GENERAL -->
     <string name="app_name">AutoLogs</string>
+    <string name="app_vehicles">Vehicles</string>
+    <string name="app_logs">Logs</string>
+
     <!-- LOGIN -->
     <string name="email_cta">Email</string>
     <string name="password_cta">Password</string>
     <string name="login_cta">Login</string>
     <string name="logout_cta">Logout</string>
     <string name="signup_cta">Sign Up</string>
+
     <!-- SIGNUP -->
     <string name="first_name_cta">First Name</string>
     <string name="last_name_cta">Last Name</string>

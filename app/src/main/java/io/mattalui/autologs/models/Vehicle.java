@@ -22,4 +22,16 @@ public class Vehicle {
     System.out.println("\tdescription: " + description);
     System.out.println("}");
   }
+
+  public String toString() {
+    if (nickname.equals("")){
+      return nickname;
+    }else{
+      String vehicle = "";
+      if (!year.equals("")){
+        vehicle += year + " ";
+      }
+      return vehicle + make + " " + model;
+    }
+  }
 }
