@@ -13,6 +13,14 @@ public class Vehicle {
   public int owner;
   // List<AutoLog> logs;
 
+  public Vehicle(){
+    make = new String(); // required
+    model = new String(); // required
+    year = new String();
+    nickname = new String();
+    description = new String();
+  }
+
   public void display() {
     System.out.println("Vehicle {");
     System.out.println("\tmake: " + make);
@@ -24,7 +32,7 @@ public class Vehicle {
   }
 
   public String toString() {
-    if (nickname.equals("")){
+    if (!nickname.equals("")){
       return nickname;
     }else{
       String vehicle = "";
