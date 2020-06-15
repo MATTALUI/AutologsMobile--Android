@@ -3,6 +3,8 @@
     <string name="app_name">AutoLogs</string>
     <string name="app_vehicles">Vehicles</string>
     <string name="app_logs">Logs</string>
+    <string name="save_cta">Save</string>
+    <string name="new_cta">New</string>
 
     <!-- LOGIN -->
     <string name="email_cta">Email</string>
@@ -17,6 +19,14 @@
     <string name="password_confirm_cta">Confirm Password</string>
     <string name="nickname_cta">Nickname (Optional)</string>
     <string name="description_cta">Description (Optional)</string>
+
+    <!-- VEHICLE -->
+    <string name="make_cta">Make</string>
+    <string name="model_cta">Model</string>
+    <string name="year_cta">Year (Optional)</string>
+    <!--<string name="nickname_cta">Nickname (Optional)</string>-->
+    <!--<string name="description_cta">Description (Optional)</string>-->
+
 
     <!-- CONSTANTS -->
     <string name="PREFERENCES_USER_DATA">io.mattalui.autologs.USER_SHARED_PREFERENCES</string>
