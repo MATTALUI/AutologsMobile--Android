@@ -48,4 +48,9 @@ public class ViewVehicles extends UserProtectedActivity {
         Intent intent = new Intent(this, ViewLogs.class);
         startActivity(intent);
     }
+
+    public void createVehicle(View v){
+        Intent intent = new Intent(this, CreateVehicleActivity.class);
+        startActivity(intent);
+    }
 }
