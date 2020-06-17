@@ -17,8 +17,9 @@ public class ViewVehicles extends UserProtectedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_vehicles);
-        vehiclesView = (ListView)findViewById(R.id.vehiclesListView);
+
+        setFocusContentView(R.layout.activity_view_vehicles);
+        vehiclesView = findViewById(R.id.vehiclesListView);
 
         fetchVehicles();
     }
@@ -42,11 +43,6 @@ public class ViewVehicles extends UserProtectedActivity {
             }
         });
         getVehicles.start();
-    }
-
-    public void viewLogs(View v){
-        Intent intent = new Intent(this, ViewLogs.class);
-        startActivity(intent);
     }
 
     public void createVehicle(View v){
