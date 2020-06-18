@@ -19,9 +19,13 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import io.mattalui.autologs.models.State;
 import io.mattalui.autologs.models.User;
 
-public class UserProtectedActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
+public class UserProtectedActivity extends AppCompatActivity implements PropertyChangeListener, NavigationView.OnNavigationItemSelectedListener {
     User currentUser;
     String usertoken;
     SharedPreferences pref;
@@ -39,6 +43,7 @@ public class UserProtectedActivity extends AppCompatActivity implements  Navigat
         validateUserToken();
         getCurrentUser();
         buildDrawer();
+        State.getState(usertoken).addPropertyChangeListener(this);
     }
 
     @Override
@@ -48,6 +53,11 @@ public class UserProtectedActivity extends AppCompatActivity implements  Navigat
         }else {
             super.onBackPressed();
         }
+    }
+
+    @Override public void onStop() {
+        super.onStop();
+        State.getState().removePropertyChangeListener(this);
     }
 
     @Override
@@ -70,6 +80,12 @@ public class UserProtectedActivity extends AppCompatActivity implements  Navigat
 
         return true;
     }
+
+    public void propertyChange(PropertyChangeEvent evt) {
+        buildContentFromState();
+    }
+
+    protected void buildContentFromState() {}
 
     protected void setFocusContentView(int viewRef) {
         FrameLayout container = findViewById(R.id.fragment_container);
