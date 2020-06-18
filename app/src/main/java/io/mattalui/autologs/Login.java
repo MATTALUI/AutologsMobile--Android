@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import io.mattalui.autologs.services.AutologsServices;
 import io.mattalui.autologs.services.LoginCredentials;
 import io.mattalui.autologs.services.LoginResponse;
@@ -51,6 +53,7 @@ public class Login extends AppCompatActivity {
                 response.user.display();
                 SharedPreferences.Editor prefEditor = _that.getSharedPreferences(getString(R.string.PREFERENCES_USER_DATA), Context.MODE_PRIVATE).edit();
                 prefEditor.putString(getString(R.string.CONSTANTS_USERTOKEN), response.userToken);
+                prefEditor.putString(getString(R.string.CONSTANTS_USERDATA), new Gson().toJson(response.user));
                 prefEditor.commit();
 
                 _that.runOnUiThread(new Runnable() {

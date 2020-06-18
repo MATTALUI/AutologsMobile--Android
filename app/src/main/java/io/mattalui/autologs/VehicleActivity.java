@@ -17,7 +17,7 @@ public class VehicleActivity extends UserProtectedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vehicle_form);
+        setFocusContentView(R.layout.activity_vehicle_form);
 
         makeInput = (EditText)findViewById(R.id.makeInput);
         modelInput = (EditText)findViewById(R.id.modelInput);

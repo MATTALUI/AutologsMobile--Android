@@ -5,6 +5,8 @@
     <string name="app_logs">Logs</string>
     <string name="save_cta">Save</string>
     <string name="new_cta">New</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
     <!-- LOGIN -->
     <string name="email_cta">Email</string>
@@ -27,8 +29,8 @@
     <!--<string name="nickname_cta">Nickname (Optional)</string>-->
     <!--<string name="description_cta">Description (Optional)</string>-->
 
-
     <!-- CONSTANTS -->
     <string name="PREFERENCES_USER_DATA">io.mattalui.autologs.USER_SHARED_PREFERENCES</string>
     <string name="CONSTANTS_USERTOKEN">io.mattalui.autologs.USERTOKEN</string>
+    <string name="CONSTANTS_USERDATA">io.mattalui.autologs.USERDATA</string>
 </resources>

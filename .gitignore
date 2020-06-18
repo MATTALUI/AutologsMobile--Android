@@ -11,3 +11,5 @@
 .externalNativeBuild
 secrets.properties
 app/build
+.idea
+.idea/assetWizardSettings.xml .idea/caches .idea/codeStyles .idea/gradle.xml .idea/jarRepositories.xml .idea/libraries .idea/misc.xml .idea/modules.xml .idea/runConfigurations.xml .idea/vcs.xml .idea/workspace.xml

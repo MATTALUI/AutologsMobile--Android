@@ -1,9 +1,6 @@
 package io.mattalui.autologs;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,8 +17,9 @@ public class ViewLogs extends UserProtectedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_logs);
-        logsView = (ListView)findViewById(R.id.logsListView);
+        setFocusContentView(R.layout.activity_view_logs);
+
+        logsView = findViewById(R.id.logsListView);
 
         fetchLogs();
     }
@@ -45,11 +43,6 @@ public class ViewLogs extends UserProtectedActivity {
             }
         });
         getLogs.start();
-    }
-
-    public void viewVehicles(View v) {
-        Intent intent = new Intent(this, ViewVehicles.class);
-        startActivity(intent);
     }
 
     public void logout(View v){
