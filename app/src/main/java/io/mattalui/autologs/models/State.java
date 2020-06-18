@@ -50,7 +50,18 @@ public class State {
     }
 
     private void fetchVehicles() {
-
+        if (loadedVehicles || userToken == null) return;
+        final State that = this;
+        new Thread(new Runnable(){
+            @Override
+            public void run(){
+//                try {Thread.sleep(7000);} catch(Exception e){}
+                List<Vehicle> vehicles = new AutologsServices(userToken).getVehicles();
+                for (Vehicle vehicle : vehicles) vehicle.display();
+                that.setVehicles(vehicles);
+                that.setVehicleLoadingState(true);
+            }
+        }).start();
     }
 
     public void setToken(String _userToken){
@@ -75,14 +86,34 @@ public class State {
         support.firePropertyChange("logs", prevState, logs);
     }
 
+    public List<Vehicle> getVehicles(){
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle>_vehicles) {
+        List<Vehicle> prevState = vehicles;
+        vehicles = _vehicles;
+        support.firePropertyChange("vehicles", prevState, vehicles);
+    }
+
     public boolean isLogsLoaded () {
         return loadedLogs;
+    }
+
+    public boolean isVehiclesLoaded() {
+        return loadedVehicles;
     }
 
     public void setLogLoadingState(boolean loadingState) {
         boolean prevState = loadedLogs;
         loadedLogs = loadingState;
         support.firePropertyChange("loadedLogs", prevState, loadedLogs);
+    }
+
+    public void setVehicleLoadingState(boolean loadingState) {
+        boolean prevState = loadedVehicles;
+        loadedVehicles = loadingState;
+        support.firePropertyChange("loadedVehicles", prevState, loadedVehicles);
     }
 
     public static State getState() {
