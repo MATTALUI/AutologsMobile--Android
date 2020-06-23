@@ -1,18 +1,19 @@
 package io.mattalui.autologs;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.List;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import io.mattalui.autologs.models.AutoLog;
-import io.mattalui.autologs.services.AutologsServices;
+import io.mattalui.autologs.models.State;
 
 public class ViewLogs extends UserProtectedActivity {
+    TextView noLogs;
     ListView logsView;
+    ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,32 +21,27 @@ public class ViewLogs extends UserProtectedActivity {
         setFocusContentView(R.layout.activity_view_logs);
 
         logsView = findViewById(R.id.logsListView);
-
-        fetchLogs();
+        spinner = findViewById(R.id.logLoadingSpinner);
+        noLogs = findViewById(R.id.noLogsText);
+        buildContentFromState();
     }
 
-    public void fetchLogs(){
-        if(usertoken == null) return;
+    @Override
+    protected void buildContentFromState() {
+        final State state = State.getState();
         final ViewLogs that = this;
-        Thread getLogs = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                final List<AutoLog> logs = new AutologsServices(that.usertoken).getLogs();
-                for(AutoLog log : logs) log.display();
+        final int spinnerVisibility = state.isLogsLoaded() ? View.INVISIBLE : View.VISIBLE;
+        final int noLogVisibility = state.isLogsLoaded() && state.getLogs().size() == 0 ? View.VISIBLE : View.INVISIBLE;
+        final int logsListVisibility = state.isLogsLoaded() && state.getLogs().size() > 0 ? View.VISIBLE : View.INVISIBLE;
 
-                that.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ArrayAdapter<AutoLog> logsAdapter = new ArrayAdapter<AutoLog>(that, android.R.layout.simple_list_item_1, logs);
-                        that.logsView.setAdapter(logsAdapter);
-                    }
-                });
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                that.spinner.setVisibility(spinnerVisibility);
+                that.noLogs.setVisibility(noLogVisibility);
+                that.logsView.setVisibility(logsListVisibility);
+                that.logsView.setAdapter(new ArrayAdapter<AutoLog>(that, android.R.layout.simple_list_item_1, state.getLogs()));
             }
         });
-        getLogs.start();
-    }
-
-    public void logout(View v){
-        super.logout(v);
     }
 }

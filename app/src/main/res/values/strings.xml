@@ -22,6 +22,12 @@
     <string name="nickname_cta">Nickname (Optional)</string>
     <string name="description_cta">Description (Optional)</string>
 
+    <!-- LOGS -->
+    <string name="no_logs">No Logs To Display</string>
+
+    <!-- VEHICLES -->
+    <string name="no_vehicles">No Vehicles To Display</string>
+
     <!-- VEHICLE -->
     <string name="make_cta">Make</string>
     <string name="model_cta">Model</string>
