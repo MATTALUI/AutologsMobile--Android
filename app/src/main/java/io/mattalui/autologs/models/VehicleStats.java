@@ -51,6 +51,12 @@ public class VehicleStats {
         return vehicle;
     }
 
+    public float getAverageFillupCost() { return averageFillupCost; }
+
+    public float getAverageFillupAmount() { return averageFillupAmount; }
+
+    public float getAverageMilesPerGallon() { return averageMilesPerGallon; }
+
     public void registerLog(AutoLog log){
         logs.add(log);
     }

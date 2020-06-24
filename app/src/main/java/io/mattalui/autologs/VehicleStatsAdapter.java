@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import io.mattalui.autologs.models.VehicleStats;
 
@@ -40,24 +41,27 @@ public class VehicleStatsAdapter extends ArrayAdapter<VehicleStats> implements V
             TextView averageMPG = view.findViewById(R.id.averageMPG);
 
             vehicleName.setText(vehicleStat.getVehicle().toString());
-            averageFillupCost.setText(formatCost(0.0f));
-            averageFillupAmount.setText(formatAmount(0.0f));
-            averageMPG.setText(formatEfficiency(0.0f));
+            averageFillupCost.setText(formatCost(vehicleStat.getAverageFillupCost()));
+            averageFillupAmount.setText(formatAmount(vehicleStat.getAverageFillupAmount()));
+            averageMPG.setText(formatEfficiency(vehicleStat.getAverageMilesPerGallon()));
         }
 
         return view;
     }
 
     private String formatCost(float cost){
-        return "$";
+        DecimalFormat df = new DecimalFormat("0.00");
+        return "Average Fillup Cost: $" + df.format(cost);
     }
 
     private String formatAmount(float amount) {
-        return "GA";
+        DecimalFormat df = new DecimalFormat("0.00");
+        return "Average Fillup Amount: " + df.format(amount) + "GA";
     }
 
     private String formatEfficiency(float mpg) {
-        return "MPG";
+        DecimalFormat df = new DecimalFormat("0.00");
+        return "Average Efficiency: " + df.format(mpg) + "MPG";
     }
 
     @Override
