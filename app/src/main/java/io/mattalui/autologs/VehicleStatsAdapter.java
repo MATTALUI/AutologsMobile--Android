@@ -36,14 +36,26 @@ public class VehicleStatsAdapter extends ArrayAdapter<VehicleStats> implements V
 
         if (vehicleStat != null){
             TextView vehicleName = view.findViewById(R.id.vehicleName);
+            TextView noLogs = view.findViewById(R.id.noLogsMessage);
             TextView averageFillupCost = view.findViewById(R.id.averageFillupCost);
             TextView averageFillupAmount = view.findViewById(R.id.averageFillupAmount);
             TextView averageMPG = view.findViewById(R.id.averageMPG);
 
             vehicleName.setText(vehicleStat.getVehicle().toString());
-            averageFillupCost.setText(formatCost(vehicleStat.getAverageFillupCost()));
-            averageFillupAmount.setText(formatAmount(vehicleStat.getAverageFillupAmount()));
-            averageMPG.setText(formatEfficiency(vehicleStat.getAverageMilesPerGallon()));
+            if (vehicleStat.emptyLogs()){
+                noLogs.setVisibility(View.VISIBLE);
+                averageFillupCost.setVisibility(View.GONE);
+                averageFillupAmount.setVisibility(View.GONE);
+                averageMPG.setVisibility(View.GONE);
+            }else{
+                averageFillupCost.setText(formatCost(vehicleStat.getAverageFillupCost()));
+                averageFillupAmount.setText(formatAmount(vehicleStat.getAverageFillupAmount()));
+                averageMPG.setText(formatEfficiency(vehicleStat.getAverageMilesPerGallon()));
+
+                if (vehicleStat.emptyMPG()){
+                    averageMPG.setVisibility(View.GONE);
+                }
+            }
         }
 
         return view;

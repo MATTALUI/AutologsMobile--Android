@@ -13,9 +13,9 @@ public class VehicleStats {
     public VehicleStats(Vehicle _vehicle){
         vehicle = _vehicle;
         logs = new ArrayList<AutoLog>();
-        averageFillupCost = -1.0f;
-        averageFillupAmount = -1.0f;
-        averageMilesPerGallon = -1.0f;
+        averageFillupCost = 0.0f;
+        averageFillupAmount = 0.0f;
+        averageMilesPerGallon = 0.0f;
     }
 
     public void calculate() {
@@ -59,6 +59,14 @@ public class VehicleStats {
 
     public void registerLog(AutoLog log){
         logs.add(log);
+    }
+
+    public boolean emptyLogs() {
+        return logs.size() == 0;
+    }
+
+    public boolean emptyMPG() {
+        return logs.size() < 2;
     }
 
     public String toString() {

@@ -37,6 +37,7 @@
     <!--<string name="description_cta">Description (Optional)</string>-->
 
     <!-- STATS -->
+    <string name="no_data">No Logs Available</string>
 
     <!-- CONSTANTS -->
     <string name="PREFERENCES_USER_DATA">io.mattalui.autologs.USER_SHARED_PREFERENCES</string>
