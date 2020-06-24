@@ -151,12 +151,16 @@ public class State {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try{ Thread.sleep(3000); }catch(Exception e) {}
+                try{ Thread.sleep(7000); }catch(Exception e) {}
                 stats = new Statistics();
                 stats.display();
                 that.setStatsLoadingState(true);
             }
         }).start();
+    }
+
+    public Statistics getStatistics(){
+        return stats;
     }
 
     public boolean isStatsLoaded() {

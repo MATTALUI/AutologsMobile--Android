@@ -1,6 +1,8 @@
 package io.mattalui.autologs.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Statistics {
     private HashMap<Integer, VehicleStats> data;
@@ -17,6 +19,14 @@ public class Statistics {
         for (VehicleStats vehicleStats : data.values()){
             vehicleStats.calculate();
         }
+    }
+
+    public List<VehicleStats> getVehicleStatistics() {
+        List<VehicleStats> vs = new ArrayList<VehicleStats>();
+        for (VehicleStats stat : data.values()){
+            vs.add(stat);
+        }
+        return vs;
     }
 
     public void display() {

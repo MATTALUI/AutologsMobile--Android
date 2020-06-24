@@ -47,6 +47,10 @@ public class VehicleStats {
         }
     }
 
+    public Vehicle getVehicle(){
+        return vehicle;
+    }
+
     public void registerLog(AutoLog log){
         logs.add(log);
     }
