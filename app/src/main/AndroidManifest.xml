@@ -31,6 +31,10 @@
             android:name=".CreateVehicleActivity"
             android:parentActivityName=".ViewVehicles">
         </activity>
+        <activity
+            android:name=".ViewStatistics"
+            android:parentActivityName=".ViewLogs">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

@@ -13,7 +13,7 @@ public class AutoLog {
   public int vehicle;
 
   public String toString(){
-    return "miles: " + this.miles;
+    return "Vehicle #" + this.vehicle + ": " + this.miles + " miles";
   }
 
   public void display() {

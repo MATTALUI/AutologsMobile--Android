@@ -70,7 +70,7 @@ public class UserProtectedActivity extends AppCompatActivity implements Property
                 intent = new Intent(this, ViewVehicles.class);
                 break;
             case R.id.reports_link:
-                // TODO: add the ability to navigate to the reports Activity
+                intent = new Intent(this, ViewStatistics.class);
                 break;
             case R.id.logout_link:
                 logout(null);

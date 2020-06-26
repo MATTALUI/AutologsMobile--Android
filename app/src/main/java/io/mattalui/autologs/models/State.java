@@ -14,19 +14,37 @@ public class State {
     private String userToken;
     private List<AutoLog> logs;
     private List<Vehicle> vehicles;
+    private Statistics stats;
     private boolean loadedLogs;
     private boolean loadedVehicles;
+    private boolean loadedStats;
     private PropertyChangeSupport support;
 
     private State() {
         // Instantiate this data just so we don't get errors
         logs = new ArrayList<AutoLog>();
         vehicles = new ArrayList<Vehicle>();
+        stats = null;
         loadedVehicles = false;
         loadedLogs = false;
+        loadedStats = false;
         support = new PropertyChangeSupport(this);
 
         refresh();
+    }
+
+    public static State getState() {
+        if (instance == null) {
+            instance = new State();
+        }
+        return instance;
+    }
+
+    public static State getState(String _userToken) {
+        State instance = getState();
+        instance.setToken(_userToken);
+        instance.refresh();;
+        return instance;
     }
 
     public void refresh(){
@@ -34,6 +52,22 @@ public class State {
         fetchVehicles();
     }
 
+    public void addPropertyChangeListener(PropertyChangeListener pcl) {
+        support.addPropertyChangeListener(pcl);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        support.removePropertyChangeListener(pcl);
+    }
+
+    public void setToken(String _userToken){
+        userToken = _userToken;
+    }
+
+
+    /////////////////////////////////
+    //  LOGS
+    /////////////////////////////////
     public void fetchLogs(){
         if (loadedLogs || userToken == null) return;
         final State that = this;
@@ -49,6 +83,30 @@ public class State {
         }).start();
     }
 
+    public List<AutoLog> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<AutoLog> _logs){
+        List<AutoLog> prevState = logs;
+        logs = _logs;
+        support.firePropertyChange("logs", prevState, logs);
+    }
+
+    public boolean isLogsLoaded () {
+        return loadedLogs;
+    }
+
+    public void setLogLoadingState(boolean loadingState) {
+        boolean prevState = loadedLogs;
+        loadedLogs = loadingState;
+        support.firePropertyChange("loadedLogs", prevState, loadedLogs);
+    }
+
+
+    /////////////////////////////////
+    //  VEHICLES
+    /////////////////////////////////
     private void fetchVehicles() {
         if (loadedVehicles || userToken == null) return;
         final State that = this;
@@ -64,28 +122,6 @@ public class State {
         }).start();
     }
 
-    public void setToken(String _userToken){
-        userToken = _userToken;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener pcl) {
-        support.addPropertyChangeListener(pcl);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener pcl) {
-        support.removePropertyChangeListener(pcl);
-    }
-
-    public List<AutoLog> getLogs() {
-        return logs;
-    }
-
-    public void setLogs(List<AutoLog> _logs){
-        List<AutoLog> prevState = logs;
-        logs = _logs;
-        support.firePropertyChange("logs", prevState, logs);
-    }
-
     public List<Vehicle> getVehicles(){
         return vehicles;
     }
@@ -96,18 +132,8 @@ public class State {
         support.firePropertyChange("vehicles", prevState, vehicles);
     }
 
-    public boolean isLogsLoaded () {
-        return loadedLogs;
-    }
-
     public boolean isVehiclesLoaded() {
         return loadedVehicles;
-    }
-
-    public void setLogLoadingState(boolean loadingState) {
-        boolean prevState = loadedLogs;
-        loadedLogs = loadingState;
-        support.firePropertyChange("loadedLogs", prevState, loadedLogs);
     }
 
     public void setVehicleLoadingState(boolean loadingState) {
@@ -116,20 +142,34 @@ public class State {
         support.firePropertyChange("loadedVehicles", prevState, loadedVehicles);
     }
 
-    public static State getState() {
-        if (instance == null) {
-            instance = new State();
-        }
-        return instance;
+
+    /////////////////////////////////
+    //  STATS
+    /////////////////////////////////
+    public void buildStats() {
+        final State that = this;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                try{ Thread.sleep(7000); }catch(Exception e) {}
+                stats = new Statistics();
+                stats.display();
+                that.setStatsLoadingState(true);
+            }
+        }).start();
     }
 
-    public static State getState(String _userToken) {
-        if (instance == null) {
-            instance = new State();
-        }
-        instance.setToken(_userToken);
-        instance.refresh();;
-        return instance;
+    public Statistics getStatistics(){
+        return stats;
     }
 
+    public boolean isStatsLoaded() {
+        return loadedStats;
+    }
+
+    public void setStatsLoadingState(boolean loadingState) {
+        boolean prevState = loadedStats;
+        loadedStats = loadingState;
+        support.firePropertyChange("loadedStats", prevState, loadedStats);
+    }
 }

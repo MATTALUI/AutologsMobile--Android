@@ -3,6 +3,7 @@
     <string name="app_name">AutoLogs</string>
     <string name="app_vehicles">Vehicles</string>
     <string name="app_logs">Logs</string>
+    <string name="app_stats">Statistics</string>
     <string name="save_cta">Save</string>
     <string name="new_cta">New</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
@@ -34,6 +35,9 @@
     <string name="year_cta">Year (Optional)</string>
     <!--<string name="nickname_cta">Nickname (Optional)</string>-->
     <!--<string name="description_cta">Description (Optional)</string>-->
+
+    <!-- STATS -->
+    <string name="no_data">No Logs Available</string>
 
     <!-- CONSTANTS -->
     <string name="PREFERENCES_USER_DATA">io.mattalui.autologs.USER_SHARED_PREFERENCES</string>
