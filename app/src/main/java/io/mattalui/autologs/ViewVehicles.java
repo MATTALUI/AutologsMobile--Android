@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import io.mattalui.autologs.adapters.VehiclesAdapter;
 import io.mattalui.autologs.models.State;
 import io.mattalui.autologs.models.Vehicle;
 
@@ -44,7 +46,7 @@ public class ViewVehicles extends UserProtectedActivity {
                 that.spinner.setVisibility(spinnerVisibility);
                 that.noVehicles.setVisibility(noVehicleVisibility);
                 that.vehiclesView.setVisibility(vehiclesListVisibility);
-                that.vehiclesView.setAdapter(new ArrayAdapter<Vehicle>(that, android.R.layout.simple_list_item_1, state.getVehicles()));
+                that.vehiclesView.setAdapter(new VehiclesAdapter(state.getVehicles(), that));
             }
         });
     }

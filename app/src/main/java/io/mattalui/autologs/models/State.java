@@ -103,6 +103,18 @@ public class State {
         support.firePropertyChange("loadedLogs", prevState, loadedLogs);
     }
 
+    public int countLogs(int vehicleId){
+        int total = 0;
+
+        for (AutoLog log : logs){
+            if (log.vehicle == vehicleId) {
+                total++;
+            }
+        }
+
+        return total;
+    }
+
 
     /////////////////////////////////
     //  VEHICLES
