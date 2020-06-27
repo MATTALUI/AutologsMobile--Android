@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import io.mattalui.autologs.adapters.VehicleStatsAdapter;
 import io.mattalui.autologs.models.State;
 
 public class ViewStatistics extends UserProtectedActivity {

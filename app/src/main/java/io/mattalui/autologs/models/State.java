@@ -103,6 +103,18 @@ public class State {
         support.firePropertyChange("loadedLogs", prevState, loadedLogs);
     }
 
+    public int countLogs(int vehicleId){
+        int total = 0;
+
+        for (AutoLog log : logs){
+            if (log.vehicle == vehicleId) {
+                total++;
+            }
+        }
+
+        return total;
+    }
+
 
     /////////////////////////////////
     //  VEHICLES
@@ -124,6 +136,16 @@ public class State {
 
     public List<Vehicle> getVehicles(){
         return vehicles;
+    }
+
+    public Vehicle getVehicle(int vehicleId) {
+        for (Vehicle vehicle : vehicles){
+            if (vehicle.id == vehicleId){
+                return vehicle;
+            }
+        }
+
+        return null;
     }
 
     public void setVehicles(List<Vehicle>_vehicles) {

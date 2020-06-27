@@ -1,4 +1,4 @@
-package io.mattalui.autologs;
+package io.mattalui.autologs.adapters;
 
 
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.List;
+
+import io.mattalui.autologs.R;
 import io.mattalui.autologs.models.VehicleStats;
 
 public class VehicleStatsAdapter extends ArrayAdapter<VehicleStats> implements View.OnClickListener{
