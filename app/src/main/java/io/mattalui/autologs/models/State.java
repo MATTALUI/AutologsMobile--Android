@@ -126,6 +126,16 @@ public class State {
         return vehicles;
     }
 
+    public Vehicle getVehicle(int vehicleId) {
+        for (Vehicle vehicle : vehicles){
+            if (vehicle.id == vehicleId){
+                return vehicle;
+            }
+        }
+
+        return null;
+    }
+
     public void setVehicles(List<Vehicle>_vehicles) {
         List<Vehicle> prevState = vehicles;
         vehicles = _vehicles;

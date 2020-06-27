@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import io.mattalui.autologs.models.AutoLog;
 import io.mattalui.autologs.models.State;
+import io.mattalui.autologs.adapters.LogsAdapter;
 
 public class ViewLogs extends UserProtectedActivity {
     TextView noLogs;
@@ -40,7 +41,8 @@ public class ViewLogs extends UserProtectedActivity {
                 that.spinner.setVisibility(spinnerVisibility);
                 that.noLogs.setVisibility(noLogVisibility);
                 that.logsView.setVisibility(logsListVisibility);
-                that.logsView.setAdapter(new ArrayAdapter<AutoLog>(that, android.R.layout.simple_list_item_1, state.getLogs()));
+//                that.logsView.setAdapter(new ArrayAdapter<AutoLog>(that, android.R.layout.simple_list_item_1, state.getLogs()));
+                that.logsView.setAdapter(new LogsAdapter(state.getLogs(), that));
             }
         });
     }

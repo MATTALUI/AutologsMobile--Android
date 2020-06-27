@@ -8,6 +8,7 @@ public class AutoLog {
   public String note;
   public String location;
   public String coords;
+  public String createdAt;
   // Associative IDs
   public int user;
   public int vehicle;
@@ -25,6 +26,7 @@ public class AutoLog {
     System.out.println("\tnote: " + note);
     System.out.println("\tlocation: " + location);
     System.out.println("\tcoords: " + coords);
+    System.out.println("\tcreatedAt: " + createdAt);
     System.out.println("}");
   }
 }

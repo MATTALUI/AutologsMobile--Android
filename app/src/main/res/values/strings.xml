@@ -4,6 +4,7 @@
     <string name="app_vehicles">Vehicles</string>
     <string name="app_logs">Logs</string>
     <string name="app_stats">Statistics</string>
+    <string name="app_date">Date</string>
     <string name="save_cta">Save</string>
     <string name="new_cta">New</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
@@ -25,6 +26,13 @@
 
     <!-- LOGS -->
     <string name="no_logs">No Logs To Display</string>
+
+    <!-- LOG -->
+    <string name="log_miles">Miles</string>
+    <string name="log_fillup_amount">Fillup Amount</string>
+    <string name="log_fillup_cost">Fillup Cost</string>
+    <string name="log_note">Note</string>
+    <string name="log_location">Location</string>
 
     <!-- VEHICLES -->
     <string name="no_vehicles">No Vehicles To Display</string>
