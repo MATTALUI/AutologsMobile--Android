@@ -93,6 +93,12 @@ public class State {
         support.firePropertyChange("logs", prevState, logs);
     }
 
+    public void addLog(AutoLog log){
+        List<AutoLog> prevState = logs;
+        logs.add(log);
+        support.firePropertyChange("logs", prevState, logs);
+    }
+
     public boolean isLogsLoaded () {
         return loadedLogs;
     }
