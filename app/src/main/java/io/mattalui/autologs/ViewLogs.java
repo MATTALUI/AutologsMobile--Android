@@ -1,5 +1,6 @@
 package io.mattalui.autologs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -22,6 +23,11 @@ public class ViewLogs extends UserProtectedActivity {
         spinner = findViewById(R.id.logLoadingSpinner);
         noLogs = findViewById(R.id.noLogsText);
         buildContentFromState();
+    }
+
+    public void createLog(View v){
+        Intent intent = new Intent(this, CreateLogActivity.class);
+        startActivity(intent);
     }
 
     @Override

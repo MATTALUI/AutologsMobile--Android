@@ -28,9 +28,13 @@
     <string name="no_logs">No Logs To Display</string>
 
     <!-- LOG -->
+    <string name="log">Log</string>
     <string name="log_miles">Miles</string>
+    <string name="log_miles_cta">Miles (ODO)</string>
     <string name="log_fillup_amount">Fillup Amount</string>
+    <string name="log_fillup_amount_cta">Fillup Amount (GA)</string>
     <string name="log_fillup_cost">Fillup Cost</string>
+    <string name="log_fillup_cost_cta">Fillup Cost ($)</string>
     <string name="log_note">Note</string>
     <string name="log_location">Location</string>
 
@@ -38,6 +42,7 @@
     <string name="no_vehicles">No Vehicles To Display</string>
 
     <!-- VEHICLE -->
+    <string name="vehicle">Vehicle</string>
     <string name="make_cta">Make</string>
     <string name="model_cta">Model</string>
     <string name="year_cta">Year (Optional)</string>
