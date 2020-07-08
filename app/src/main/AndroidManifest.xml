@@ -21,6 +21,10 @@
             android:parentActivityName=".ViewLogs">
         </activity>
         <activity
+            android:name=".ViewLog"
+            android:parentActivityName=".ViewLogs">
+        </activity>
+        <activity
             android:name=".Login">
         </activity>
         <activity

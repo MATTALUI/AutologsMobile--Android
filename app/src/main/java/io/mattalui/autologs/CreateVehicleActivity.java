@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import io.mattalui.autologs.models.State;
 import io.mattalui.autologs.models.Vehicle;
 import io.mattalui.autologs.services.AutologsServices;
 
@@ -27,6 +28,7 @@ public class CreateVehicleActivity extends VehicleActivity {
             @Override
             public void run() {
                 final Vehicle createdVehicle = new AutologsServices(usertoken).createVehicle(newVehicle);
+                State.getState().addVehicle(createdVehicle);
 
                 that.runOnUiThread(new Runnable() {
                     @Override
