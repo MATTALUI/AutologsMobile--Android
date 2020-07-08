@@ -127,6 +127,21 @@ public class State {
         support.firePropertyChange("logs", prevState, logs);
     }
 
+    public void removeLog(AutoLog log){
+        List<AutoLog> prevState = logs;
+        List<AutoLog> newLogs = new ArrayList<>();
+
+        for (int i = 0; i < logs.size(); i++){
+            AutoLog relevantLog = logs.get(i);
+            if (relevantLog.id != log.id){
+                newLogs.add(relevantLog);
+            }
+        }
+
+        logs = newLogs;
+        support.firePropertyChange("logs", prevState, logs);
+    }
+
     public boolean isLogsLoaded () {
         return loadedLogs;
     }
