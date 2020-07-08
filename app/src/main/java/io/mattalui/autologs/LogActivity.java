@@ -1,6 +1,7 @@
 package io.mattalui.autologs;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,6 +21,7 @@ public class LogActivity extends UserProtectedActivity {
     protected EditText fillupCostInput;
     protected EditText locationInput;
     protected EditText noteInput;
+    protected FloatingActionButton deleteLogButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class LogActivity extends UserProtectedActivity {
         fillupCostInput = (EditText)findViewById(R.id.fillupCostInput);
         locationInput = (EditText)findViewById(R.id.locationInput);
         noteInput = (EditText)findViewById(R.id.noteInput);
+        deleteLogButton = (FloatingActionButton)findViewById(R.id.deleteLogButton);
 
         List<String> vehicleNames = new ArrayList<>();
         for (Vehicle vehicle : State.getState().getVehicles()){

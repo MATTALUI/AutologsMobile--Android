@@ -19,11 +19,13 @@ public class CreateLogActivity extends LogActivity {
                 break;
             }
         }
+
         log.fillupAmount = Float.parseFloat(fillupAmountInput.getText().toString());
         log.fillupCost = Float.parseFloat(fillupCostInput.getText().toString());
         log.miles = Float.parseFloat(milesInput.getText().toString());
         log.note = noteInput.getText().toString();
         log.location = locationInput.getText().toString();
+
         final AutoLog newAutoLog = log;
         final CreateLogActivity that = this;
         new Thread(new Runnable() {
@@ -34,7 +36,7 @@ public class CreateLogActivity extends LogActivity {
                 that.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast myToast = Toast.makeText(that, "Successfully created " +  createdLog.toString(), Toast.LENGTH_LONG);
+                        Toast myToast = Toast.makeText(that, "Successfully created log.", Toast.LENGTH_LONG);
                         myToast.show();
                         Intent intent = new Intent(that, ViewLogs.class);
                         startActivity(intent);

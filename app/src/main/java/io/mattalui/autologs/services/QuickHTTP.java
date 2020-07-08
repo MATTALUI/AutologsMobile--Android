@@ -127,6 +127,7 @@ public class QuickHTTP {
 
       return readResponse(connection);
     }catch(Exception e) {
+      System.out.println(e);
       return "ERROR";
     }
   }

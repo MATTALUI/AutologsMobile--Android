@@ -29,6 +29,7 @@
 
     <!-- LOG -->
     <string name="log">Log</string>
+    <string name="log_id">logId</string>
     <string name="log_miles">Miles</string>
     <string name="log_miles_cta">Miles (ODO)</string>
     <string name="log_fillup_amount">Fillup Amount</string>

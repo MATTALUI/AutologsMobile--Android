@@ -1,6 +1,7 @@
 package io.mattalui.autologs.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import io.mattalui.autologs.R;
+import io.mattalui.autologs.ViewLog;
 import io.mattalui.autologs.models.AutoLog;
 import io.mattalui.autologs.models.Vehicle;
 import io.mattalui.autologs.models.State;
@@ -45,37 +47,19 @@ public class LogsAdapter extends ArrayAdapter<AutoLog> implements View.OnClickLi
         if (log != null){
             Vehicle vehicle = State.getState().getVehicle(log.vehicle);
 
-//            ConstraintLayout logBasicInfo = view.findViewById(R.id.logBasicInfo);
+            ConstraintLayout logBasicInfo = view.findViewById(R.id.logBasicInfo);
             TextView vehicleName = view.findViewById(R.id.vehicleName);
             TextView previewText = view.findViewById(R.id.previewText);
 
-//            ConstraintLayout logMoreInfo = view.findViewById(R.id.logMoreInfo);
-//
-//            TextView dateDisplay = view.findViewById(R.id.dateDisplay);
-//            TextView milesDisplay = view.findViewById(R.id.milesDisplay);
-//            TextView amountDisplay = view.findViewById(R.id.amountDisplay);
-//            TextView costDisplay = view.findViewById(R.id.costDisplay);
-//            TextView noteDisplay = view.findViewById(R.id.noteDisplay);
-//            TextView locationDisplay = view.findViewById(R.id.locationDisplay);
-//
             if (vehicle != null){
                 vehicleName.setText(vehicle.toString());
             }else{
                 vehicleName.setText("Unknown Vehicle");
             }
+
+            logBasicInfo.setTag(R.string.log_id, Integer.toString(log.id));
             previewText.setText(formatPreview(log));
-//
-//            if (logMoreInfo != null) {
-//                dateDisplay.setText(formatDate(log.createdAt));
-//                milesDisplay.setText(log.miles + " MI");
-//                amountDisplay.setText(log.fillupAmount + " GA");
-//                costDisplay.setText("$" + log.fillupCost);
-//                noteDisplay.setText(log.note);
-//                locationDisplay.setText(log.location);
-//
-//                logMoreInfo.setVisibility(View.GONE);
-//                logBasicInfo.setOnClickListener(this);
-//            }
+            logBasicInfo.setOnClickListener(this);
         }
 
         return view;
@@ -83,11 +67,11 @@ public class LogsAdapter extends ArrayAdapter<AutoLog> implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-//        System.out.println("Calling the toggler");
-//        ConstraintLayout logMoreInfo = view.findViewById(R.id.logMoreInfo);
-//        int visibility = logMoreInfo.getVisibility();
-//        int nextVisibility = visibility == View.VISIBLE ? View.GONE : View.VISIBLE;
-//        logMoreInfo.setVisibility(nextVisibility);
+        ConstraintLayout logBasicInfo = view.findViewById(R.id.logBasicInfo);
+
+        Intent intent = new Intent(getContext(), ViewLog.class);
+        intent.putExtra(getContext().getString(R.string.log_id), logBasicInfo.getTag(R.string.log_id).toString());
+        getContext().startActivity(intent);
     }
 
     private String formatPreview(AutoLog log){

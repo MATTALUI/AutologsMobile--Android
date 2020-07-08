@@ -2,6 +2,7 @@ package io.mattalui.autologs.models;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +88,16 @@ public class State {
         return logs;
     }
 
+    public AutoLog getLog(int logId) {
+        for (AutoLog log : logs){
+            if (log.id == logId){
+                return log;
+            }
+        }
+
+        return null;
+    }
+
     public void setLogs(List<AutoLog> _logs){
         List<AutoLog> prevState = logs;
         logs = _logs;
@@ -96,6 +107,38 @@ public class State {
     public void addLog(AutoLog log){
         List<AutoLog> prevState = logs;
         logs.add(log);
+        support.firePropertyChange("logs", prevState, logs);
+    }
+
+    public void updateLog(AutoLog log) {
+        List<AutoLog> prevState = logs;
+        List<AutoLog> newLogs = new ArrayList<>();
+
+        for (int i = 0; i < logs.size(); i++){
+            AutoLog relevantLog = logs.get(i);
+            if (relevantLog.id == log.id){
+                newLogs.add(log);
+            }else{
+                newLogs.add(relevantLog);
+            }
+        }
+
+        logs = newLogs;
+        support.firePropertyChange("logs", prevState, logs);
+    }
+
+    public void removeLog(AutoLog log){
+        List<AutoLog> prevState = logs;
+        List<AutoLog> newLogs = new ArrayList<>();
+
+        for (int i = 0; i < logs.size(); i++){
+            AutoLog relevantLog = logs.get(i);
+            if (relevantLog.id != log.id){
+                newLogs.add(relevantLog);
+            }
+        }
+
+        logs = newLogs;
         support.firePropertyChange("logs", prevState, logs);
     }
 
@@ -152,6 +195,12 @@ public class State {
         }
 
         return null;
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        List<Vehicle> prevState = vehicles;
+        vehicles.add(vehicle);
+        support.firePropertyChange("vehicles", prevState, vehicles);
     }
 
     public void setVehicles(List<Vehicle>_vehicles) {
