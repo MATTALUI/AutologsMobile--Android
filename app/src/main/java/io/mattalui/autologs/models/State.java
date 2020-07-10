@@ -88,6 +88,18 @@ public class State {
         return logs;
     }
 
+    public List<AutoLog> getVehicleLogs(int vehicleId){
+        List<AutoLog> vehicleLogs = new ArrayList<AutoLog>();
+
+        for (AutoLog log : logs){
+            if (log.vehicle == vehicleId){
+                vehicleLogs.add(log);
+            }
+        }
+
+        return vehicleLogs;
+    }
+
     public AutoLog getLog(int logId) {
         for (AutoLog log : logs){
             if (log.id == logId){

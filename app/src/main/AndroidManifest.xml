@@ -36,6 +36,10 @@
             android:parentActivityName=".ViewLogs">
         </activity>
         <activity
+            android:name=".ViewVehicleLogs"
+            android:parentActivityName=".ViewVehicles">
+        </activity>
+        <activity
             android:name=".CreateVehicleActivity"
             android:parentActivityName=".ViewVehicles">
         </activity>

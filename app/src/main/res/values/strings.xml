@@ -43,6 +43,7 @@
     <string name="no_vehicles">No Vehicles To Display</string>
 
     <!-- VEHICLE -->
+    <string name="vehicle_id">vehicleId</string>
     <string name="vehicle">Vehicle</string>
     <string name="make_cta">Make</string>
     <string name="model_cta">Model</string>
