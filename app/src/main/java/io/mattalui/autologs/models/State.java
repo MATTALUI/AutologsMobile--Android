@@ -25,7 +25,7 @@ public class State {
     private State() {
         support = new PropertyChangeSupport(this);
 
-        refresh();
+        setEmptyState();
     }
 
     public static State getState() {
@@ -38,7 +38,7 @@ public class State {
     public static State getState(String _userToken) {
         State instance = getState();
         instance.setToken(_userToken);
-        instance.refresh();;
+        instance.refresh();
         return instance;
     }
 
@@ -55,7 +55,6 @@ public class State {
     }
 
     public void refresh(){
-        setEmptyState();
         fetchLogs();
         fetchVehicles();
     }
