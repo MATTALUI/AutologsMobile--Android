@@ -2,6 +2,7 @@ package io.mattalui.autologs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -13,6 +14,7 @@ public class ViewLogs extends UserProtectedActivity {
     TextView noLogs;
     ListView logsView;
     ProgressBar spinner;
+    FloatingActionButton addLogButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class ViewLogs extends UserProtectedActivity {
         logsView = findViewById(R.id.logsListView);
         spinner = findViewById(R.id.logLoadingSpinner);
         noLogs = findViewById(R.id.noLogsText);
+        addLogButton = findViewById(R.id.addLogButton);
         buildContentFromState();
     }
 
@@ -44,6 +47,11 @@ public class ViewLogs extends UserProtectedActivity {
                 that.spinner.setVisibility(spinnerVisibility);
                 that.noLogs.setVisibility(noLogVisibility);
                 that.logsView.setVisibility(logsListVisibility);
+                if (state.getVehicles().size() > 0) {
+                    that.addLogButton.show();
+                } else {
+                    that.addLogButton.hide();
+                }
                 that.logsView.setAdapter(new LogsAdapter(state.getLogs(), that));
             }
         });

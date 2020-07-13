@@ -28,6 +28,7 @@
     <string name="no_logs">No Logs To Display</string>
 
     <!-- LOG -->
+    <string name="no_data">No Logs Available</string>
     <string name="log">Log</string>
     <string name="log_id">logId</string>
     <string name="log_miles">Miles</string>
@@ -52,7 +53,8 @@
     <!--<string name="description_cta">Description (Optional)</string>-->
 
     <!-- STATS -->
-    <string name="no_data">No Logs Available</string>
+    <string name="stats_no_data">No Reports Available</string>
+
 
     <!-- CONSTANTS -->
     <string name="PREFERENCES_USER_DATA">io.mattalui.autologs.USER_SHARED_PREFERENCES</string>
