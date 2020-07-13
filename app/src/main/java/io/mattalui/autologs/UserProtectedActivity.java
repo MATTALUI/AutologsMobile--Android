@@ -97,6 +97,7 @@ public class UserProtectedActivity extends AppCompatActivity implements Property
         prefEditor.remove(getString(R.string.CONSTANTS_USERTOKEN));
         prefEditor.commit();
         goToLogin();
+        State.getState().logout();
 
         Toast myToast = Toast.makeText(this, "Hurry back soon!", Toast.LENGTH_LONG);
         myToast.show();
