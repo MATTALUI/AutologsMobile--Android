@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -84,12 +86,12 @@ public class SignUp extends AppCompatActivity implements PropertyChangeListener 
             try{ Thread.sleep(7000); }catch(Exception e) {}
             final LoginResponse response = new AutologsServices().signUp(newUser);
             response.display();
-            state.setUserLoadingState(true);
 
             if (!response.hasError()){
                 response.user.display();
                 SharedPreferences.Editor prefEditor = _that.getSharedPreferences(getString(R.string.PREFERENCES_USER_DATA), Context.MODE_PRIVATE).edit();
                 prefEditor.putString(getString(R.string.CONSTANTS_USERTOKEN), response.userToken);
+                prefEditor.putString(getString(R.string.CONSTANTS_USERDATA), new Gson().toJson(response.user));
                 prefEditor.commit();
             }
 
@@ -111,6 +113,7 @@ public class SignUp extends AppCompatActivity implements PropertyChangeListener 
 
                   Toast myToast = Toast.makeText(_that, toastMessage, Toast.LENGTH_LONG);
                   myToast.show();
+                  state.setUserLoadingState(true);
               }
             });
         }

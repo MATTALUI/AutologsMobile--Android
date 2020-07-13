@@ -95,6 +95,7 @@ public class UserProtectedActivity extends AppCompatActivity implements Property
 
     public void logout(View v){
         prefEditor.remove(getString(R.string.CONSTANTS_USERTOKEN));
+        prefEditor.remove(getString(R.string.CONSTANTS_USERDATA));
         prefEditor.commit();
         goToLogin();
         State.getState().logout();
