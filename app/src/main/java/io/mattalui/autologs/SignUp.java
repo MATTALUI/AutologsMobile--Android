@@ -83,7 +83,7 @@ public class SignUp extends AppCompatActivity implements PropertyChangeListener 
       new Thread(new Runnable(){
         @Override
         public void run(){
-            try{ Thread.sleep(7000); }catch(Exception e) {}
+            // try{ Thread.sleep(7000); }catch(Exception e) {}
             final LoginResponse response = new AutologsServices().signUp(newUser);
             response.display();
 
