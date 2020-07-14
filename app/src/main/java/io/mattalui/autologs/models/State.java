@@ -19,19 +19,13 @@ public class State {
     private boolean loadedLogs;
     private boolean loadedVehicles;
     private boolean loadedStats;
+    private boolean loadedUser;
     private PropertyChangeSupport support;
 
     private State() {
-        // Instantiate this data just so we don't get errors
-        logs = new ArrayList<AutoLog>();
-        vehicles = new ArrayList<Vehicle>();
-        stats = null;
-        loadedVehicles = false;
-        loadedLogs = false;
-        loadedStats = false;
         support = new PropertyChangeSupport(this);
 
-        refresh();
+        setEmptyState();
     }
 
     public static State getState() {
@@ -44,13 +38,30 @@ public class State {
     public static State getState(String _userToken) {
         State instance = getState();
         instance.setToken(_userToken);
-        instance.refresh();;
+        instance.refresh();
         return instance;
+    }
+
+    private void setEmptyState() {
+        logs = new ArrayList<AutoLog>();
+        vehicles = new ArrayList<Vehicle>();
+        stats = null;
+        loadedVehicles = false;
+        loadedLogs = false;
+        loadedStats = false;
+        // loadedUser initializes as true since we'll store user data.
+        // It will get reset in activities as we make user fetch calls.
+        loadedUser = true;
     }
 
     public void refresh(){
         fetchLogs();
         fetchVehicles();
+    }
+
+    public void logout(){
+        userToken = null;
+        setEmptyState();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
@@ -260,5 +271,19 @@ public class State {
         boolean prevState = loadedStats;
         loadedStats = loadingState;
         support.firePropertyChange("loadedStats", prevState, loadedStats);
+    }
+
+
+    /////////////////////////////////
+    //  USER
+    /////////////////////////////////
+    public boolean isUserLoaded () {
+        return loadedUser;
+    }
+
+    public void setUserLoadingState(boolean loadingState) {
+        boolean prevState = loadedUser;
+        loadedUser = loadingState;
+        support.firePropertyChange("loadedUser", prevState, loadedUser);
     }
 }
